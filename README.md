@@ -47,3 +47,8 @@ npm install
 ```bash
 npm run start
 ```
+
+### 📌 Catatan
+
+Proyek ini dibuat sebagai bagian dari submission Dicoding - Belajar Fundamental Aplikasi Back-End (Tugas Akhir Projek 2).
+Namun, arsitektur dan penulisan kode dioptimalkan agar sesuai dengan standar industri untuk backend API development.
