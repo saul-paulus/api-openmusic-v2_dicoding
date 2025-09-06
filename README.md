@@ -25,17 +25,4 @@ API ini dirancang modular, mudah di-maintain, serta mengikuti prinsip clean code
 
 ## Struktur Direktory
 
-src/
-├── api/
-│ └── songs/
-│ ├── handler.js # Handler untuk setiap endpoint songs
-│ ├── routes.js # Routing konfigurasi
-│ └── index.js  
-├── exceptions/
-│ └── ClientError.js # Custom error handling
-├── services/
-│ └── SongsService.js # Business logic untuk songs
-├── validator/
-│ └── songs/
-│ └── index.js # Validasi payload songs
-└── server.js # Entry point server
+![alt text](image.png)
