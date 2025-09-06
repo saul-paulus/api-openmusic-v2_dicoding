@@ -26,3 +26,24 @@ API ini dirancang modular, mudah di-maintain, serta mengikuti prinsip clean code
 ## Struktur Direktory
 
 ![alt text](image.png)
+
+## 🚀 Instalasi & Menjalankan
+
+1. Clone repository
+
+```bash
+git clone https://github.com/username/openmusic-api.git
+cd openmusic-api
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. jalankan server
+
+```bash
+npm run start
+```
