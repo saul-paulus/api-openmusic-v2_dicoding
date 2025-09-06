@@ -32,7 +32,7 @@ API ini dirancang modular, mudah di-maintain, serta mengikuti prinsip clean code
 1. Clone repository
 
 ```bash
-git clone https://github.com/username/openmusic-api.git
+git https://github.com/saul-paulus/api-openmusic-v2_dicoding.git
 cd openmusic-api
 ```
 
