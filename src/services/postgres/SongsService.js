@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import { Pool } from "pg";
 import InvariantError from "../../exceptions/InvariantError.js";
 import NotFoundError from "../../exceptions/NotFoundError.js";
-import mapDBToModel from "../utils/index.js";
+import { mapDBToSongModel } from "../utils/index.js";
 
 class SongsService {
   constructor() {
@@ -48,7 +48,7 @@ class SongsService {
       throw new InvariantError("Data gagal dimuat");
     }
 
-    return result.rows.map(mapDBToModel);
+    return result.rows.map(mapDBToSongModel);
   }
 
   async getSongById(id) {
@@ -61,7 +61,7 @@ class SongsService {
     if (!result.rows.length) {
       throw new NotFoundError("Song tidak ditemukan");
     }
-    return result.rows.map(mapDBToModel)[0];
+    return result.rows.map(mapDBToSongModel)[0];
   }
 
   async editSongById(id, { title, year, genre, performer, duration, albumId }) {
