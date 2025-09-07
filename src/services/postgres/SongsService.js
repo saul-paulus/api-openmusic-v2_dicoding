@@ -41,16 +41,24 @@ class SongsService {
     return result.rows[0].id;
   }
 
-  async getSongs() {
-    const result = await this._pool.query(
-      "SELECT id,title,performer FROM songs"
-    );
+  async getSongs({ title, performer }) {
+    let query = {
+      text: "SELECT id, title, performer FROM songs WHERE 1=1",
+      values: [],
+    };
 
-    if (!result) {
-      throw new InvariantError("Data gagal dimuat");
+    if (title) {
+      query.values.push(`%${title}%`);
+      query.text += ` AND title ILIKE $${query.values.length}`;
     }
 
-    return result.rows.map(mapDBToSongModel);
+    if (performer) {
+      query.values.push(`%${performer}%`);
+      query.text += ` AND performer ILIKE $${query.values.length}`;
+    }
+
+    const result = await this._pool.query(query);
+    return result.rows;
   }
 
   async getSongById(id) {
