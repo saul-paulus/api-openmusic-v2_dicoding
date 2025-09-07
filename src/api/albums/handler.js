@@ -97,7 +97,6 @@ class AlbumsHandler {
         .response({
           status: "success",
           message: "Album berhasil diperbarui",
-          data: { albumId: id },
         })
         .code(200);
     } catch (error) {
