@@ -4,7 +4,7 @@ export const mapDBToSongModel = ({
   year,
   genre,
   performer,
-  duration = null,
+  duration,
   album_id,
   created_at,
   updated_at,
@@ -16,21 +16,11 @@ export const mapDBToSongModel = ({
   performer,
   duration,
   albumId: album_id,
-  createdAt: created_at,
-  updatedAt: updated_at,
 });
 
 // Mapper untuk albums
-export const mapDBToAlbumModel = ({
+export const mapDBToAlbumModel = ({ id, name, year }) => ({
   id,
   name,
   year,
-  created_at,
-  updated_at,
-}) => ({
-  id,
-  name,
-  year,
-  createdAt: created_at,
-  updatedAt: updated_at,
 });

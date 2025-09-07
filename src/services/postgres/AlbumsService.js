@@ -40,7 +40,13 @@ class AlbumsService {
 
   async getAlbumById(id) {
     const query = {
-      text: "SELECT * FROM albums WHERE id = $1",
+      text: `
+        SELECT a.id as album_id, a.name as album_name, a.year, 
+             b.id as song_id, b.title as song_title, b.performer
+        FROM albums a
+        LEFT JOIN songs b ON b.album_id = a.id
+        WHERE a.id = $1
+      `,
       values: [id],
     };
 
@@ -50,7 +56,24 @@ class AlbumsService {
       throw new NotFoundError("Album tidak ditemukan");
     }
 
-    return mapDBToAlbumModel(result.rows[0]);
+    const album = {
+      id: result.rows[0].album_id,
+      name: result.rows[0].album_name,
+      year: result.rows[0].year,
+      songs: [],
+    };
+
+    result.rows.forEach((row) => {
+      if (row.song_id) {
+        album.songs.push({
+          id: row.song_id,
+          title: row.song_title,
+          performer: row.performer,
+        });
+      }
+    });
+
+    return album;
   }
 
   async editAlbumById(id, { name, year }) {
