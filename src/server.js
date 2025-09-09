@@ -40,7 +40,33 @@ const init = async () => {
     },
   ]);
 
-  await server.start();
+  server.ext("onPreResponse", (request, h) => {
+    const { response } = request;
+
+    if (response instanceof Error) {
+      // Jika error pada happi
+      if (response.isBoom) {
+        const { statusCode, payload } = response.output;
+        return h
+          .response({
+            status: "fail",
+            message: payload.message,
+          })
+          .code(statusCode);
+      }
+
+      // Jika error biasa
+      return h
+        .response({
+          status: "fail",
+          message: response.message,
+        })
+        .code(response.statusCode);
+    }
+
+    return h.continue;
+  }),
+    await server.start();
   console.log(`Server berjalan pada ${server.info.uri}`);
 };
 
